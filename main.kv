@@ -1,0 +1,24 @@
+#:kivy 2.1.0
+# Import modules
+#:import WipeTransition kivy.uix.screenmanager.WipeTransition
+# Include other kv files
+#:include login.kv
+#:include home.kv
+#:include signup.kv
+
+<MainScreen@Screen>:
+    ScreenManager:
+        id: WindowManager
+        transition: WipeTransition()
+        LoginScreen:
+        HomeScreen:
+        SignupScreen:
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+            Image:
+                source: "images/homify-logo.png"
+                size: self.texture_size
+
+       
