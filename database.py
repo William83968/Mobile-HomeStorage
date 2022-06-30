@@ -12,7 +12,7 @@ class Database():
 
     def setup(self):
         # Create a cursor
-        self.cursor = self.db.cursor() 
+        self.cursor = self.db.cursor(buffered=True) 
 
         # Create an actual database
         self.cursor.execute("CREATE DATABASE IF NOT EXISTS home_db")
@@ -32,17 +32,25 @@ class Database():
     
     def user_submit(self, values):
         datas = values
-        sql_command = f"INSERT INTO `home_db`.`users` (username, password, email, address, city) VALUES (%s, %s, %s, %s, %s);"
+        sql_command = f"INSERT INTO `home_db`.`users` (username, pswd, email, address, city) VALUES (%s, %s, %s, %s, %s);"
         self.cursor.execute(sql_command, datas)
         self.db.commit()
 
     def check_user(self, username, password):
         us_name, pswd = username, password
-        sql_command = f"SELECT * FROM `home_db`.`users` WHERE "
+        sql_command = f"SELECT * FROM `home_db`.`users` WHERE username='{us_name}' AND pswd='{pswd}'"
+        self.cursor.execute(sql_command)
+        records = self.cursor.fetchone()
+        if records:
+            return True
+        else:
+            return False
 
 
 db = Database()
 db.setup()
+
+
 
 
 

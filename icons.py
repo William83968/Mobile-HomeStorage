@@ -57,7 +57,6 @@ class CustomOneLineIconListItem(OneLineIconListItem):
 
 
 class PreviousMDIcons(Screen):
-
     def set_list_md_icons(self, text="", search=False):
         '''Builds a list of icons for the screen MDIcons.'''
 

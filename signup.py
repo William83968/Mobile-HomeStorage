@@ -36,7 +36,9 @@ class SignupScreen(Screen):
         db.user_submit(datas)
         return True
 
-    def clear(self):    
-        for d in self.textfields:
+    def clear(self):
+        self.username.text = ''
+        self.password.text = ''
+        for d in self.optional_fields:
             d.text = ''
         

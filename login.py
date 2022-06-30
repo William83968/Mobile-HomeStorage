@@ -8,9 +8,11 @@ class LoginScreen(Screen):
     #  Validate username and password
     def validate(self):
         username = self.ids.username.text
-        name_validation = False
         password = self.ids.password.text
-        pswd_validation = False
+        result = db.check_user(username, password)
+        if not result:
+            self.display_error(username, password)
+        return result
 
     def display_error(self, username, password):
         if username != '':

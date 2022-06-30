@@ -8,9 +8,9 @@
         Rectangle:
             size: self.size
             pos: self.pos
-            texture: 
+            texture:
                 Gradient.horizontal(
-                get_color_from_hex("#006080"), 
+                get_color_from_hex("#006080"),
                 get_color_from_hex("#00004d")
                 )
     MDCard:
@@ -19,14 +19,14 @@
         padding: 25
         spacing: 25
         orientation: "vertical"
-   
+
         MDLabel:
             id: welcome_label
             text: "WELCOME"
             font_size: 70
             halign: 'center'
             height: self.texture_size[1]
-        
+
         BoxLayout:
             size_hint: 0.7, 0.2
             pos_hint: {"center_x":0.5, "center_y":0.5}
@@ -45,7 +45,7 @@
                 halign: 'right'
                 pos_hint: {"center_y":0.5}
                 on_press: root.clear_username()
-        
+
         BoxLayout:
             size_hint: 0.7, 0.4
             pos_hint: {"center_x":0.5, "center_y":0.5}
@@ -71,7 +71,7 @@
             font_size: 30
             pos_hint: {"center_x":0.5, "center_y":0.}
             size_hint_x: 0.7
-            on_press: root.validate()
+            on_press: if root.validate(): app.root.ids.WindowManager.current = "HomeScreen"
 
         MDRectangleFlatButton:
             text: "SIGN UP"
@@ -80,5 +80,5 @@
             size_hint_x: 0.7
             on_press:  app.root.ids.WindowManager.current = "SignupScreen"
 
-        Widget: 
+        Widget:
             size_hint_y: 0.5
