@@ -32,12 +32,11 @@ class LoginScreen(Screen):
             error_message = 'This field is required'
             self.ids.password.helper_text = error_message
             self.ids.password.error = True
-        
-            
+
+
     def clear_username(self):
         self.ids.username.text = ''
 
     def clear_password(self):
         self.ids.password.text = ''
 
-    

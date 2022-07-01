@@ -7,14 +7,14 @@ class SignupScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         Clock.schedule_once(self.startup, 0)
-        
+
     def startup(self, *args):
         self.username = self.ids.username
         self.password = self.ids.password
         self.optional_fields = [self.ids.email,
                 self.ids.address,
                 self.ids.city]
-    
+
     def signup(self):
         datas = []
         if self.username.text == '' or self.password.text == '':
@@ -29,10 +29,10 @@ class SignupScreen(Screen):
 
         for d in self.optional_fields:
             if d.text == '':
-                datas.append('unknown')
+                datas.append('')
             else:
                 datas.append(d.text)
-    
+
         db.user_submit(datas)
         return True
 
@@ -41,4 +41,3 @@ class SignupScreen(Screen):
         self.password.text = ''
         for d in self.optional_fields:
             d.text = ''
-        

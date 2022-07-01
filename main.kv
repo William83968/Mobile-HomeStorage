@@ -1,12 +1,21 @@
 #:kivy 2.1.0
 # Import modules
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import Gradient kivy_gradient.Gradient
 # Include other kv files
 #:include login.kv
 #:include home.kv
 #:include signup.kv
 
 <MainScreen@Screen>:
+    Image:
+        source: "images/star.jpg"
+        size_hint: None, None
+        size: self.parent.size
+        allow_stretch: True
+        keep_ratio: False
+
     ScreenManager:
         id: WindowManager
         transition: WipeTransition()
@@ -17,8 +26,55 @@
     MDNavigationDrawer:
         id: nav_drawer
         ContentNavigationDrawer:
-            Image:
-                source: "images/homify-logo.png"
-                size: self.texture_size
+            orientation: "vertical"
+            padding: "8dp"
+            spacing: "8dp"
+            BoxLayout:
+                orientation: "vertical"
+                height: avatar.height
+                spacing: 10
+                padding_x: 10
+                MDFlatButton:
+                    id: avatar
+                    size_hint: None, None
+                    size: "256", "172"
+                    background_color: 0, 0, 0, 0
+                    Image:
+                        source: "images/homify-logo.png"
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                        size_hint: None, None
+                        size: self.parent.size
 
-       
+                MDLabel:
+                    text: "Homify Storage System"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                ScrollView:
+                    DrawerList:
+                        id: menu_list
+                        OneLineIconListItem:
+                            text: "Houses"
+                            IconLeftWidget:
+                                icon: "folder-home"
+
+                        OneLineIconListItem:
+                            text: "Categories"
+                            IconLeftWidget:
+                                icon: "format-list-bulleted"
+
+                        OneLineIconListItem:
+                            text: "Item"
+                            IconLeftWidget:
+                                icon: "table"
+
+                        OneLineIconListItem:
+                            text: "User Profile"
+                            IconLeftWidget:
+                                icon: "account"
+
+
+
+
+

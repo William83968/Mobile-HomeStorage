@@ -1,25 +1,14 @@
 #:kivy 2.1.0
 #:import get_color_from_hex kivy.utils.get_color_from_hex
-#:import Gradient kivy_gradient.Gradient
 
 <LoginScreen@MDScreen>:
     name: 'LoginScreen'
-    canvas:
-        Rectangle:
-            size: self.size
-            pos: self.pos
-            texture:
-                Gradient.horizontal(
-                get_color_from_hex("#006080"),
-                get_color_from_hex("#00004d")
-                )
     MDCard:
         size_hint: 0.7, 0.7
         pos_hint: {"center_x":0.5, "center_y":0.5}
         padding: 25
         spacing: 25
         orientation: "vertical"
-
         MDLabel:
             id: welcome_label
             text: "WELCOME"
@@ -71,7 +60,7 @@
             font_size: 30
             pos_hint: {"center_x":0.5, "center_y":0.}
             size_hint_x: 0.7
-            on_press: if root.validate(): app.root.ids.WindowManager.current = "HomeScreen"
+            on_press: app.root.ids.WindowManager.current = "HomeScreen"
 
         MDRectangleFlatButton:
             text: "SIGN UP"

@@ -1,7 +1,8 @@
+from turtle import update
 from kivy.uix.screenmanager import Screen
-from kivy.clock import Clock
 from datetime import datetime
 from kivy.uix.boxlayout import BoxLayout
+from kivy.clock import Clock
 
 class HomeScreen(Screen):
     def __init__(self, **kwargs):
@@ -17,4 +18,3 @@ class HomeScreen(Screen):
         print(button)
 
 
-    
