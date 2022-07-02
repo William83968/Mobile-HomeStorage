@@ -2,11 +2,25 @@
 # Import modules
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import get_color_from_hex kivy.utils.get_color_from_hex
-#:import Gradient kivy_gradient.Gradient
 # Include other kv files
 #:include login.kv
 #:include home.kv
 #:include signup.kv
+#:include categories.kv
+#:include houses.kv
+#:include item.kv
+#:include user.kv
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    text_color: app.theme_cls.text_color
+    on_release: self.parent.set_color_item(self);app.root.ids.WindowManager.current = self.text+"Screen"
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
 
 <MainScreen@Screen>:
     Image:
@@ -22,6 +36,10 @@
         LoginScreen:
         HomeScreen:
         SignupScreen:
+        CategoriesScreen:
+        HousesScreen:
+        ItemScreen:
+        UserScreen:
 
     MDNavigationDrawer:
         id: nav_drawer
@@ -54,25 +72,6 @@
                 ScrollView:
                     DrawerList:
                         id: menu_list
-                        OneLineIconListItem:
-                            text: "Houses"
-                            IconLeftWidget:
-                                icon: "folder-home"
-
-                        OneLineIconListItem:
-                            text: "Categories"
-                            IconLeftWidget:
-                                icon: "format-list-bulleted"
-
-                        OneLineIconListItem:
-                            text: "Item"
-                            IconLeftWidget:
-                                icon: "table"
-
-                        OneLineIconListItem:
-                            text: "User Profile"
-                            IconLeftWidget:
-                                icon: "account"
 
 
 
