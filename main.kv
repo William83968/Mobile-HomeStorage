@@ -4,17 +4,19 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 # Include other kv files
 #:include login.kv
-#:include home.kv
 #:include signup.kv
 #:include categories.kv
 #:include houses.kv
-#:include item.kv
+#:include items.kv
 #:include user.kv
+#:include home.kv
 
 <ItemDrawer>:
     theme_text_color: "Custom"
     text_color: app.theme_cls.text_color
-    on_release: self.parent.set_color_item(self);app.root.ids.WindowManager.current = self.text+"Screen"
+    on_release: self.parent.set_color_item(self)
+    on_release: app.root.ids.WindowManager.current = self.text+"Screen"
+    on_release: app.root.ids.nav_drawer.set_state('close')
 
     IconLeftWidget:
         id: icon
@@ -33,13 +35,6 @@
     ScreenManager:
         id: WindowManager
         transition: WipeTransition()
-        LoginScreen:
-        HomeScreen:
-        SignupScreen:
-        CategoriesScreen:
-        HousesScreen:
-        ItemScreen:
-        UserScreen:
 
     MDNavigationDrawer:
         id: nav_drawer

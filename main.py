@@ -1,12 +1,28 @@
+# Import kivy core modules
 from kivy.lang import Builder
-from kivymd.app import MDApp
 from kivy.core.window import Window
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivymd.theming import ThemableBehavior
-from kivymd.uix.list.list import MDList, OneLineIconListItem
-from kivy.properties import StringProperty
 from kivy.clock import Clock
+from kivymd.app import MDApp
+
+# Import kivy components
+from kivy.uix.boxlayout import BoxLayout
+from kivymd.uix.list.list import MDList, OneLineIconListItem
+
+# Import other stuff
+from kivymd.theming import ThemableBehavior
+from kivy.properties import StringProperty
+import pytz
+import os
+
+# Import screens
+from home import HomeScreen
+from signup import SignupScreen
+from categories import CategoriesScreen
+from houses import HousesScreen
+from items import ItemsScreen
+from login import LoginScreen
+from user import UserScreen
 
 class ContentNavigationDrawer(BoxLayout):
     pass
@@ -28,6 +44,7 @@ class DrawerList(ThemableBehavior, MDList):
 
     def on_start(self, *args):
         icons_item = {
+            "home": "Home",
             "folder-home": "Houses",
             "format-list-bulleted": "Categories",
             "blur-linear": "Item",
@@ -45,6 +62,15 @@ class ScreenManager(ScreenManager):
 class MainScreen(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
+        screens = [LoginScreen(name='LoginScreen'),
+                    SignupScreen(name='SignupScreen'),
+                    HomeScreen(name='HomeScreen'),
+                    HousesScreen(name='HousesScreen'),
+                    CategoriesScreen(name='CategoriesScreen'),
+                    ItemsScreen(name='ItemsScreen'),
+                    UserScreen(name='UserScreen')]
+        for screen_name in screens:
+            self.ids.WindowManager.add_widget(screen_name)
 
 # Configurations
 class MainApp(MDApp):
@@ -56,5 +82,4 @@ class MainApp(MDApp):
         return MainScreen()
 
 if __name__ == '__main__':
-    MainApp = MainApp()
-    MainApp.run()
+   MainApp().run()

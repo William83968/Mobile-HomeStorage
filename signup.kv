@@ -17,7 +17,7 @@
         size_hint: 0.7, 0.7
         pos_hint: {"center_x":0.5, "center_y":0.5}
         padding: 25
-        spacing: "30dp"
+        spacing: "20dp"
         orientation: "vertical"
 
         MDIconButton:
@@ -27,12 +27,13 @@
         MDLabel:
             id: welcome_label
             text: "WELCOME"
+            pos_hint: {"center_x":0.5, "center_y":0.99}
             font_size: 70
             halign: 'center'
             height: self.texture_size[1]
 
         BoxLayout:
-            size_hint: 0.7, 0.2
+            size_hint: 0.7, 0.4
             pos_hint: {"center_x":0.5, "center_y":0.5}
             MDTextField:
                 id: username
@@ -45,7 +46,7 @@
                 pos_hint: {"center_x":0.5, "center_y":0.5}
 
         BoxLayout:
-            size_hint: 0.7, 0.2
+            size_hint: 0.7, 0.4
             pos_hint: {"center_x":0.5, "center_y":0.5}
             MDTextField:
                 id: password
@@ -59,7 +60,7 @@
                 password: True
 
         BoxLayout:
-            size_hint: 0.7, 0.2
+            size_hint: 0.7, 0.4
             pos_hint: {"center_x":0.5, "center_y":0.5}
             MDTextField:
                 id: email
@@ -70,18 +71,29 @@
                 pos_hint: {"center_x":0.5, "center_y":0.5}
 
         BoxLayout:
-            size_hint: 0.7, 0.2
+            size_hint: 0.7, 0.4
             pos_hint: {"center_x":0.5, "center_y":0.5}
             MDTextField:
                 id: address
                 hint_text: "address"
+                icon_right: "google-maps"
+                size_hint_x: 0.7
+                font_size: 40
+                pos_hint: {"center_x":0.5, "center_y":0.5}
+
+        BoxLayout:
+            size_hint: 0.7, 0.4
+            pos_hint: {"center_x":0.5, "center_y":0.5}
+            MDTextField:
+                id: country
+                hint_text: "country"
                 icon_right: "home-city"
                 size_hint_x: 0.7
                 font_size: 40
                 pos_hint: {"center_x":0.5, "center_y":0.5}
 
         BoxLayout:
-            size_hint: 0.7, 0.2
+            size_hint: 0.7, 0.4
             pos_hint: {"center_x":0.5, "center_y":0.5}
             MDTextField:
                 id: city
@@ -96,7 +108,7 @@
             font_size: 30
             pos_hint: {"center_x":0.5}
             size_hint_x: 0.7
-            on_press: if root.signup() == True: app.root.ids.WindowManager.current = "HomeScreen"
+            on_press: root.signup()
 
         MDRectangleFlatButton:
             text: "CLEAR"
@@ -106,4 +118,4 @@
             on_press: root.clear()
 
         Widget:
-            size_hint_y: 0.6
+            size_hint_y: 0.4

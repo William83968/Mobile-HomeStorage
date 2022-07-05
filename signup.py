@@ -1,21 +1,20 @@
 from kivy.lang import Builder
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen
 from database import db
-from kivy.clock import Clock
 
-class SignupScreen(Screen):
+class SignupScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        Clock.schedule_once(self.startup, 0)
 
-    def startup(self, *args):
+    def signup(self):
+        # setup variables
         self.username = self.ids.username
         self.password = self.ids.password
         self.optional_fields = [self.ids.email,
-                self.ids.address,
-                self.ids.city]
-
-    def signup(self):
+                                self.ids.address,
+                                self.country,
+                                self.city]
+        # appending data according to the text field
         datas = []
         if self.username.text == '' or self.password.text == '':
             if self.username.text == '':
@@ -33,11 +32,15 @@ class SignupScreen(Screen):
             else:
                 datas.append(d.text)
 
-        db.user_submit(datas)
-        return True
+        print(datas)
+
+        # db.user_submit(datas)
+        # return True
 
     def clear(self):
-        self.username.text = ''
-        self.password.text = ''
-        for d in self.optional_fields:
-            d.text = ''
+        self.ids.username.text = ''
+        self.ids.username.text = ''
+        self.ids.email.text = ''
+        self.ids.address.text = ''
+        self.ids.country.text = ''
+        self.ids.city.text = ''

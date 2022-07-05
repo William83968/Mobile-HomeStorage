@@ -1,6 +1,10 @@
 #:kivy 2.1.0
 
 <Toolbar@MDTopAppBar>:
-    title: "Home"
     left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state('toggle')]]
     right_action_items: [["dots-vertical"]]
+    md_bg_color: 0/255, 102/255, 102/255, 100/255
+
+<SpDial@MDFloatingActionButtonSpeedDial>:
+    root_button_anim: True
+    

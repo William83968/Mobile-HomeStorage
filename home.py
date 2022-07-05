@@ -1,20 +1,23 @@
-from turtle import update
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen
+from kivymd.uix.button import MDFloatingActionButtonSpeedDial
 from datetime import datetime
-from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
+from database import db
+import pytz
 
-class HomeScreen(Screen):
+class HomeScreen(MDScreen):
+    data = {
+            'Lua':'language-lua',
+            'Python':'language-python',
+            'Rust':'language-rust'
+        }
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        Clock.schedule_interval(self.update_time, 1)
+        Clock.schedule_interval(self.update, 1)
 
-    def update_time(self, *args):
-        now = datetime.now()
+
+    def update(self, *args):
+        timezone = pytz.timezone(db.country+'/'+db.city)
+        now = datetime.now(timezone)
         current_time = now.strftime("%-I:%M:%S")
         self.ids.time_label.text = current_time
-
-    def display_menu(self, button):
-        print(button)
-
-

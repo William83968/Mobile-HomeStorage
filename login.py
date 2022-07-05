@@ -1,7 +1,7 @@
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen
 from database import db
 
-class LoginScreen(Screen):
+class LoginScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 

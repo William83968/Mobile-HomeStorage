@@ -9,6 +9,9 @@ class Database():
             passwd = "6678liam",
             database = "home_db"
         )
+        self.user_id = 1
+        self.country = "Australia"
+        self.city = "Sydney"
 
     def setup(self):
         # Create a cursor
@@ -22,17 +25,28 @@ class Database():
             """CREATE TABLE IF NOT EXISTS `home_db`.`users` (
                 `user_id` INT NOT NULL AUTO_INCREMENT,
                 `username` VARCHAR(200) NOT NULL,
-                `password` VARCHAR(200) NOT NULL,
+                `pswd` VARCHAR(200) NOT NULL,
                 `email` VARCHAR(200) NULL DEFAULT '',
                 `address` VARCHAR(200) NULL DEFAULT '',
-                `city` VARCHAR(100) NULL DEFAULT '',
+                `country` VARCHAR(100) NULL DEFAULT 'Australia',
+                `city` VARCHAR(100) NULL DEFAULT 'Sydney',
                 PRIMARY KEY (`user_id`));
+            """
+        )
+
+        self.cursor.execute(
+            """CREATE TABLE IF NOT EXISTS `home_db`.`new_table` (
+                `category_id` INT NOT NULL,
+                `house` VARCHAR(100) NOT NULL,
+                `house_id` INT NOT NULL,
+                PRIMARY KEY (`category_id`));
             """
         )
 
     def user_submit(self, values):
         datas = values
-        sql_command = f"INSERT INTO `home_db`.`users` (username, pswd, email, address, city) VALUES (%s, %s, %s, %s, %s);"
+        sql_command = f"INSERT INTO `home_db`.`users` (username, pswd, email, address, country, city)\
+                        VALUES (%s, %s, %s, %s, %s, %s);"
         self.cursor.execute(sql_command, datas)
         self.db.commit()
 
@@ -50,6 +64,7 @@ class Database():
 
 db = Database()
 db.setup()
+db.check_user('WilsonBowman', 'erwin129')
 
 
 

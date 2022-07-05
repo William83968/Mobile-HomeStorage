@@ -1,20 +1,21 @@
 #:kivy 2.1.0
+#:include menu.kv
+
 <HomeScreen@MDScreen>:
     name: 'HomeScreen'
     BoxLayout:
         orientation: "vertical"
-        MDTopAppBar:
+        Toolbar:
             title: "Home"
-            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state('toggle')]]
-            right_action_items: [["dots-vertical"]]
-            
         MDCard:
-            size_hint: 0.2, None
+            size_hint: 0.4, None
             pos_hint: {'center_x':0.5}
             MDLabel:
                 id: time_label
                 font_size: 100
                 halign: 'center'
                 font_name: 'fonts/digital-7.ttf'
+        SpDial:
+            data: root.data
         Widget:
-            size_hint_y: 0.1
+            size_hint_y: 0.5
